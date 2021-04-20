@@ -8,7 +8,8 @@ public class ChairController : MonoBehaviour
     public float shakeSpeed = 1.0f;
     public float shakeSize = 1.0f;
     public float maxHeight;
-    public float delay;
+    public float chairDelay;
+    public float flashlightDelay;
     public Light overheadLight;
     public Light flashlight;
     public Color scareColor;
@@ -19,7 +20,7 @@ public class ChairController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("shakeChair", shakeSpeed, delay);
+        InvokeRepeating("rotateChair",chairDelay, shakeSpeed);
     }
 
     // Update is called once per frame
@@ -27,16 +28,15 @@ public class ChairController : MonoBehaviour
     {
         if(transform.position.y < maxHeight && !sceneComplete){
             transform.Translate(Vector3.up * Time.deltaTime * riseSpeed);
-            shakeChair();
+            rotateChair();
         }else{
             endScare();
         }
 
     }
 
-    void shakeChair(){
+    void rotateChair(){
         gameObject.transform.Rotate(0, shakeSize * Time.deltaTime, 0);
-
     }
 
     void endScare(){
@@ -47,6 +47,7 @@ public class ChairController : MonoBehaviour
         gameObject.SetActive(false);
         flashlight.enabled = true;
         sceneComplete = true;
+
     }
 
 }

@@ -22,7 +22,7 @@ public class LightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime * (1- Random.Range(-flickerSpeed, flickerSpeed)) * Mathf.PI;
+        time += Time.deltaTime * (1- Random.Range(0, flickerSpeed)) * Mathf.PI;
         light.intensity = start_intensity + Mathf.Sin(time * flickersPerSecond) * intensity;
     }
 }
